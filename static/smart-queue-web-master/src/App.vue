@@ -66,7 +66,7 @@ import {
 const selectedIndex = ref(0);
 const appPages = [
   {
-    title: 'Mega View',
+    title: 'Worker Desk',
     url: '/view/Mega',
     iosIcon: mailOutline,
     mdIcon: mailSharp,
@@ -79,6 +79,8 @@ const path = window.location.pathname.split('folder/')[1];
 if (path !== undefined) {
   selectedIndex.value = appPages.findIndex((page) => page.title.toLowerCase() === path.toLowerCase());
 }
+
+localStorage.setItem("APIServer_InstanceAddress", "http://localhost:3000")
 </script>
 
 <style scoped>

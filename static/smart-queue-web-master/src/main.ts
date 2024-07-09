@@ -4,6 +4,8 @@ import router from './router';
 
 import { IonicVue } from '@ionic/vue';
 
+import Axios from 'axios';
+
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
 
@@ -37,6 +39,9 @@ import './theme/variables.css';
 const app = createApp(App)
   .use(IonicVue)
   .use(router);
+
+// Attach Axios to the Vue instance as a global property
+app.config.globalProperties.$axios = Axios;
 
 router.isReady().then(() => {
   app.mount('#app');

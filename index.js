@@ -3,8 +3,14 @@ import Fastify from 'fastify'
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fastifyStatic from '@fastify/static';
+import cors from '@fastify/cors'
+
 const fastify = Fastify({
   logger: true
+})
+
+await fastify.register(cors, { 
+    // put your options here
 })
 
 const __filename = fileURLToPath(import.meta.url);
@@ -91,7 +97,7 @@ fastify.get('/queue/catch', async function handler (request, reply) {
             serviceState: "Calling",
             timestamp: new Date().getTime()
         });
-        return { status: "assigned", key: elementToAssign.key };
+        return { status: "Assigned", key: elementToAssign.key };
     } else {
         // Если нет неназначенных элементов, добавляем workerId в /freeWorkers
         try {
@@ -105,7 +111,7 @@ fastify.get('/queue/catch', async function handler (request, reply) {
             // Если /freeWorkers не существует, создаем его с текущим workerId
             await db.push("/freeWorkers", [request.query.workerId], true);
         }
-        return { status: "added to free workers", workerId: request.query.workerId };
+        return { status: "AddedToFreeWorkers", workerId: request.query.workerId };
     }
 })
 

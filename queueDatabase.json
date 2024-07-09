@@ -21,6 +21,8 @@
         }
     },
     "freeWorkers": [
-        "9"
+        "9",
+        null,
+        null
     ]
 }
