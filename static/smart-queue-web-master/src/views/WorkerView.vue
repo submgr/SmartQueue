@@ -23,29 +23,13 @@ export default {
     IonContent,
     IonButton
   },
-  setup() {
-
-    
-    const workerIdInput = ref('');
-    const workerIdValid = computed(() => {
-      const id = parseInt(localStorage.getItem('workerId'), 10);
-      return !isNaN(id);
-    });
-
-    const applyWorkerId = () => {
-      const id = parseInt(workerIdInput.value, 10);
-      if (!isNaN(id)) {
-        localStorage.setItem('workerId', id.toString());
-        window.location.reload(); // Обновляем страницу, чтобы отразить изменения
-      }
-    };
-
+  data(){
     return {
-      workerIdInput,
-      workerIdValid,
-      applyWorkerId,
-      toggleFullScreen
+      workerIdInput: "
     }
+  },
+  setup() {
+    //
   },
 
   mounted(){
