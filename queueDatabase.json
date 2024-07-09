@@ -1,0 +1,26 @@
+{
+    "settings": {
+        "currentIndexation": 7
+    },
+    "queueElements": {
+        "1": {
+            "assignedWorker": "5",
+            "serviceState": "Calling",
+            "timestamp": 1720526885900
+        },
+        "5": {
+            "key": 5,
+            "assignedWorker": "9",
+            "serviceState": "Calling",
+            "timestamp": 1720527354973
+        },
+        "6": {
+            "assignedWorker": "7",
+            "serviceState": "Calling",
+            "timestamp": 1720527456264
+        }
+    },
+    "freeWorkers": [
+        "9"
+    ]
+}

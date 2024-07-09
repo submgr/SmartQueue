@@ -1,0 +1,7 @@
+{
+  "name": "SmartQueue - Web Master",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}

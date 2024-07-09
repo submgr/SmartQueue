@@ -1,0 +1,21 @@
+{
+  "name": "com.aram_virabyan.smartqueue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aram Virabyan",
+  "type": "module",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/static": "^7.0.4",
+    "fastify": "^4.28.1",
+    "node-json-db": "^2.3.0",
+    "rxdb": "^15.27.0"
+  },
+  "devDependencies": {
+    "vite": "^5.3.3"
+  }
+}
