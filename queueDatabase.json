@@ -1,28 +1,95 @@
 {
-    "settings": {
-        "currentIndexation": 7
-    },
     "queueElements": {
         "1": {
-            "assignedWorker": "5",
+            "key": 1,
+            "assignedWorker": "6",
+            "serviceState": "Finished",
+            "timestamp": 1720567519450
+        },
+        "2": {
+            "key": 2,
+            "assignedWorker": "6",
             "serviceState": "Calling",
-            "timestamp": 1720526885900
+            "timestamp": 1720567526191
+        },
+        "3": {
+            "assignedWorker": null,
+            "serviceState": "Queued",
+            "timestamp": 1720566196339
+        },
+        "4": {
+            "assignedWorker": null,
+            "serviceState": "Queued",
+            "timestamp": 1720566200555
         },
         "5": {
-            "key": 5,
-            "assignedWorker": "9",
-            "serviceState": "Calling",
-            "timestamp": 1720527354973
+            "assignedWorker": null,
+            "serviceState": "Queued",
+            "timestamp": 1720566222925
         },
         "6": {
-            "assignedWorker": "7",
-            "serviceState": "Calling",
-            "timestamp": 1720527456264
+            "assignedWorker": null,
+            "serviceState": "Queued",
+            "timestamp": 1720566230287
+        },
+        "7": {
+            "assignedWorker": null,
+            "serviceState": "Queued",
+            "timestamp": 1720566252037
+        },
+        "8": {
+            "assignedWorker": null,
+            "serviceState": "Queued",
+            "timestamp": 1720566253100
+        },
+        "9": {
+            "assignedWorker": null,
+            "serviceState": "Queued",
+            "timestamp": 1720566271467
+        },
+        "10": {
+            "assignedWorker": null,
+            "serviceState": "Queued",
+            "timestamp": 1720566272032
+        },
+        "11": {
+            "assignedWorker": null,
+            "serviceState": "Queued",
+            "timestamp": 1720566272256
+        },
+        "12": {
+            "assignedWorker": null,
+            "serviceState": "Queued",
+            "timestamp": 1720566272424
+        },
+        "13": {
+            "assignedWorker": null,
+            "serviceState": "Queued",
+            "timestamp": 1720566272587
+        },
+        "14": {
+            "assignedWorker": null,
+            "serviceState": "Queued",
+            "timestamp": 1720566297125
+        },
+        "15": {
+            "assignedWorker": null,
+            "serviceState": "Queued",
+            "timestamp": 1720566350395
+        },
+        "16": {
+            "assignedWorker": null,
+            "serviceState": "Queued",
+            "timestamp": 1720566355279
+        },
+        "-1": {
+            "assignedWorker": -1,
+            "serviceState": "Termninated",
+            "timestamp": 1720566228478
         }
     },
-    "freeWorkers": [
-        "9",
-        null,
-        null
-    ]
+    "settings": {
+        "currentIndexation": 17
+    },
+    "freeWorkers": []
 }
