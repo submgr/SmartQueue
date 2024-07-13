@@ -258,6 +258,27 @@ fastify.get('/queue/callAgain', async function handler(request, reply) {
     }
 })
 
+// Объявляем новый маршрут для обновления статуса элемента в очереди
+fastify.get('/queue/called', async function handler(request, reply) {
+    const { id } = request.query;
+
+    // Пытаемся получить элемент очереди по id
+    try {
+        var elementToUpdate = await db.getData(`/queueElements/${id}`);
+
+        // Обновляем статус элемента
+        elementToUpdate.called = true;
+
+        // Сохраняем обновленный элемент в базе данных
+        await db.push(`/queueElements/${id}`, elementToUpdate, true);
+
+        return { status: "Updated", id: id, called: true };
+    } catch (error) {
+        // Если элемент не найден или произошла другая ошибка
+        return { error: "Element not found or call again failed", details: error.message };
+    }
+})
+
 // Run the server!
 try {
     await fastify.listen({ port: 3165 })
