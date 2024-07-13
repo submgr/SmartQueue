@@ -50,7 +50,8 @@ updateSettings();
 await db.push(`/queueElements/-1`, {
     assignedWorker: -1,
     serviceState: "Termninated",
-    timestamp: new Date().getTime()
+    timestamp: new Date().getTime(),
+    called: false
 });
 
 // Declare a route
@@ -125,7 +126,8 @@ fastify.get('/queue/add', async function handler(request, reply) {
     await db.push("/queueElements/" + Number(settingsField.currentIndexation), {
         assignedWorker: assignedWorker,
         serviceState: assignedWorker ? "Calling" : "Queued", // Если работник назначен, статус - "Calling"
-        timestamp: new Date().getTime()
+        timestamp: new Date().getTime(),
+        called: false
     }, true);
 
     // Обновляем индексацию
@@ -162,7 +164,7 @@ fastify.get('/queue/catch', async function handler(request, reply) {
                 ...elementToAssign,
                 assignedWorker: request.query.workerId,
                 serviceState: "Calling",
-                timestamp: new Date().getTime()
+                timestamp: new Date().getTime(),
             });
             return { status: "Assigned", key: elementToAssign.key };
         } else {
@@ -202,7 +204,8 @@ fastify.get('/queue/acceptArbitrary', async function handler(request, reply) {
     await db.push("/queueElements/" + visitorId, {
         assignedVolunteer: request.query.id, // Назначаем волонтера из параметра запроса
         serviceState: "InProgress", // Устанавливаем статус "InProgress"
-        timestamp: new Date().getTime()
+        timestamp: new Date().getTime(),
+        called: true
     }, true);
 
     return { visitorId: visitorId, assignedVolunteer: request.query.id, status: "InProgress" }
@@ -231,6 +234,27 @@ fastify.get('/queue/updateStatus', async function handler(request, reply) {
     } catch (error) {
         // Если элемент не найден или произошла другая ошибка
         return { error: "Element not found or update failed", details: error.message };
+    }
+})
+
+// Объявляем новый маршрут для обновления статуса элемента в очереди
+fastify.get('/queue/callAgain', async function handler(request, reply) {
+    const { id } = request.query;
+
+    // Пытаемся получить элемент очереди по id
+    try {
+        var elementToUpdate = await db.getData(`/queueElements/${id}`);
+
+        // Обновляем статус элемента
+        elementToUpdate.called = false;
+
+        // Сохраняем обновленный элемент в базе данных
+        await db.push(`/queueElements/${id}`, elementToUpdate, true);
+
+        return { status: "Updated", id: id, called: false };
+    } catch (error) {
+        // Если элемент не найден или произошла другая ошибка
+        return { error: "Element not found or call again failed", details: error.message };
     }
 })
 
