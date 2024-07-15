@@ -147,7 +147,7 @@ fastify.get('/queue/catch', async function handler(request, reply) {
 
     if (alreadyAssignedElement) {
         // Если worker уже назначен, возвращаем этот элемент
-        return { status: "Assigned", key: Number(alreadyAssignedElement[0]) };
+        return { status: "Assigned(1)", key: Number(alreadyAssignedElement[0]) };
     } else {
         // Фильтруем элементы, где assignedWorker не задан
         var unassignedElements = Object.entries(queueElements)
@@ -166,7 +166,7 @@ fastify.get('/queue/catch', async function handler(request, reply) {
                 serviceState: "Calling",
                 timestamp: new Date().getTime(),
             });
-            return { status: "Assigned", key: elementToAssign.key };
+            return { status: "Assigned(2)", key: elementToAssign.key };
         } else {
             // Если нет неназначенных элементов, добавляем workerId в /freeWorkers
             try {
@@ -180,7 +180,7 @@ fastify.get('/queue/catch', async function handler(request, reply) {
                 // Если /freeWorkers не существует, создаем его с текущим workerId
                 await db.push("/freeWorkers", [request.query.workerId], true);
             }
-            return { status: "AddedToFreeWorkers", workerId: request.query.workerId };
+            return { status: "AddedToFreeWorkers(3)", workerId: request.query.workerId };
         }
     }
 })
