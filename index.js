@@ -149,9 +149,9 @@ fastify.get('/queue/catch', async function handler(request, reply) {
         // Если worker уже назначен, возвращаем этот элемент
         return { status: "Assigned(1)", key: Number(alreadyAssignedElement[0]) };
     } else {
-        // Фильтруем элементы, где assignedWorker не задан
+        // Фильтруем элементы, где assignedWorker не задан и статус не InProgress
         var unassignedElements = Object.entries(queueElements)
-            .filter(([key, value]) => !value.assignedWorker)
+            .filter(([key, value]) => !value.assignedWorker && value.serviceState !== "InProgress")
             .map(([key, value]) => ({ key: Number(key), ...value }));
         // Сортируем элементы по ключу
         unassignedElements.sort((a, b) => a.key - b.key);
