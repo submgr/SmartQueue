@@ -147,12 +147,12 @@ fastify.get('/queue/catch', async function handler(request, reply) {
 
     if (alreadyAssignedElement) {
         // Если worker уже назначен, возвращаем этот элемент
-        return { status: "Assigned(1)", key: Number(alreadyAssignedElement[0]) };
+        return { status: "Assigned(1)", key: alreadyAssignedElement[0].key };
     } else {
         // Фильтруем элементы, где assignedWorker не задан и статус не InProgress
         var unassignedElements = Object.entries(queueElements)
             .filter(([key, value]) => !value.assignedWorker && value.serviceState !== "InProgress")
-            .map(([key, value]) => ({ key: Number(key), ...value }));
+            .map(([key, value]) => ({ key: key, ...value }));
         // Сортируем элементы по ключу
         unassignedElements.sort((a, b) => a.key - b.key);
 
@@ -202,13 +202,13 @@ fastify.get('/queue/acceptArbitrary', async function handler(request, reply) {
 
     // Добавляем произвольного посетителя в очередь
     await db.push("/queueElements/" + visitorId, {
-        assignedVolunteer: request.query.id, // Назначаем волонтера из параметра запроса
+        assignedWorker: request.query.id, // Назначаем волонтера из параметра запроса
         serviceState: "InProgress", // Устанавливаем статус "InProgress"
         timestamp: new Date().getTime(),
         called: true
     }, true);
 
-    return { visitorId: visitorId, assignedVolunteer: request.query.id, status: "InProgress" }
+    return { visitorId: visitorId, assignedWorker: request.query.id, status: "InProgress" }
 })
 
 // Объявляем новый маршрут для обновления статуса элемента в очереди
