@@ -202,6 +202,7 @@ fastify.get('/queue/acceptArbitrary', async function handler(request, reply) {
 
     // Добавляем произвольного посетителя в очередь
     await db.push("/queueElements/" + visitorId, {
+        key: visitorId,
         assignedWorker: request.query.id, // Назначаем волонтера из параметра запроса
         serviceState: "InProgress", // Устанавливаем статус "InProgress"
         timestamp: new Date().getTime(),
