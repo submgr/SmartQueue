@@ -147,7 +147,7 @@ fastify.get('/queue/catch', async function handler(request, reply) {
 
     if (alreadyAssignedElement) {
         // Если worker уже назначен, возвращаем этот элемент
-        return { status: "Assigned(1)", key: alreadyAssignedElement[0].key };
+        return { status: "Assigned(1)", key: alreadyAssignedElement[0] };
     } else {
         // Фильтруем элементы, где assignedWorker не задан и статус не InProgress
         var unassignedElements = Object.entries(queueElements)
