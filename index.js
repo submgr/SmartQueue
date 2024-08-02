@@ -140,7 +140,7 @@ fastify.get('/queue/add', async function handler(request, reply) {
 
 // Объявляем маршрут
 fastify.get('/queue/queuedWorkers', async function handler(request, reply) {
-    freeWorkers = await db.getData("/freeWorkers");
+    var freeWorkers = await db.getData("/freeWorkers");
 
     return { status: "okay", data: freeWorkers }
 })

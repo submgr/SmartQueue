@@ -85,7 +85,8 @@
         "-1": {
             "assignedWorker": -1,
             "serviceState": "Termninated",
-            "timestamp": 1720566228478
+            "timestamp": 1722595725496,
+            "called": false
         }
     },
     "settings": {
