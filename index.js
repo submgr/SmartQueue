@@ -116,8 +116,10 @@ fastify.get('/queue/add', async function handler(request, reply) {
     }
 
     let assignedWorker = null;
+    var freeWorkerAssigned = false;
     // Если есть свободные работники, назначаем первого из списка
     if (freeWorkers.length > 0) {
+        freeWorkerAssigned = true
         assignedWorker = freeWorkers.shift(); // Удаляем назначенного работника из списка свободных
         await db.push("/freeWorkers", freeWorkers, true); // Обновляем список свободных работников в базе данных
     }
@@ -135,7 +137,7 @@ fastify.get('/queue/add', async function handler(request, reply) {
         currentIndexation: settingsField.currentIndexation + 1
     });
 
-    return { status: "okay", added: settingsField.currentIndexation, assignedWorker: assignedWorker }
+    return { status: "okay", freeWorkerAssigned: freeWorkerAssigned, added: settingsField.currentIndexation, assignedWorker: assignedWorker }
 })
 
 // Объявляем маршрут
