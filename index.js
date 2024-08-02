@@ -132,7 +132,7 @@ fastify.get('/queue/add', async function handler(request, reply) {
         called: false
     }, true);
 
-    // Обновляем индексацию
+    // Обновляем индексациюdd
     await db.push("/settings", {
         currentIndexation: settingsField.currentIndexation + 1
     });
