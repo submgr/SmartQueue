@@ -138,6 +138,13 @@ fastify.get('/queue/add', async function handler(request, reply) {
     return { status: "okay", added: settingsField.currentIndexation, assignedWorker: assignedWorker }
 })
 
+// Объявляем маршрут
+fastify.get('/queue/queuedWorkers', async function handler(request, reply) {
+    freeWorkers = await db.getData("/freeWorkers");
+
+    return { status: "okay", data: freeWorkers }
+})
+
 fastify.get('/queue/catch', async function handler(request, reply) {
     // Получаем все элементы из /queueElements
     var queueElements = await db.getData("/queueElements");
